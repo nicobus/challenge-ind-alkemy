@@ -15,4 +15,9 @@ class Post extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function scopebyCreationDateDesc($query)
+    {
+        return $query->orderBy('created_at', 'desc');
+    }
 }
