@@ -21,4 +21,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\PostController::class, 'index'])->name('home');
 
+Route::get('/posts/{id}', [App\Http\Controllers\PostController::class, 'show'])->name('postDetail');
+
 
