@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
+use App\Models\Category;
 
 class PostController extends Controller
 {
@@ -29,8 +30,9 @@ class PostController extends Controller
     {
         $post = new Post;
         $title = 'Crear Post';
-        $vac = compact('post', 'title');
-        return view('pages.createPost');
+        $categories = Category::all();
+        $vac = compact('post', 'title', 'categories');
+        return view('pages.createPost', $vac);
     }
 
     /**
@@ -56,8 +58,7 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $title = 'Post '. $id;
-        $vac = compact('post', 'title
-        ');
+        $vac = compact('post', 'title');
         return view('pages.postDetail', $vac);
     }
 
@@ -71,7 +72,8 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $title = 'Editar post' . $id;
-        $vac = compact('post', 'title');
+        $categories = Category::all();
+        $vac = compact('post', 'title', 'categories');
         return view('pages.postEdit', $vac);
     }
 
