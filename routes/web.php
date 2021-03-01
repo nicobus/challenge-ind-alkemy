@@ -21,6 +21,15 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\PostController::class, 'index'])->name('home');
 
-Route::get('/posts/{id}', [App\Http\Controllers\PostController::class, 'show'])->name('postDetail');
+Route::get('/postdetail/{id}', [App\Http\Controllers\PostController::class, 'show'])->name('postDetail');
 
+Route::get('/posts', [App\Http\Controllers\PostController::class, 'create'])->name('postCreate');
+
+Route::get('/posts/{id}', [App\Http\Controllers\PostController::class, 'edit'])->name('postEdit');
+
+Route::post('/posts', [App\Http\Controllers\PostController::class, 'store'])->name('postStore');
+
+Route::patch('/posts/{id}', [App\Http\Controllers\PostController::class, 'update'])->name('postUpdate');
+
+Route::delete('/posts/{id}', [App\Http\Controllers\PostController::class, 'destroy'])->name('postDelete');
 
