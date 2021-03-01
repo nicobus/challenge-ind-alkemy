@@ -56,7 +56,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = Post::find($id);
+        $post = Post::findorfail($id);
         $title = 'Post '. $id;
         $vac = compact('post', 'title');
         return view('pages.postDetail', $vac);
@@ -70,7 +70,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $post = Post::find($id);
+        $post = Post::findorfail($id);
         $title = 'Editar post' . $id;
         $categories = Category::all();
         $vac = compact('post', 'title', 'categories');
@@ -86,7 +86,7 @@ class PostController extends Controller
      */
     public function update(PostRequest $request, $id)
     {
-        $post = Post::find($id);
+        $post = Post::findorfail($id);
         $post->fill($request->all());
         $post->save();
         return redirect(route('postDetail', ['id' =>$id]));
@@ -100,7 +100,7 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        $post = Post::find($id);
+        $post = Post::findorfail($id);
         $post->delete();
         return redirect(route('home'));
     }
