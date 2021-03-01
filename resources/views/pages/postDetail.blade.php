@@ -1,0 +1,9 @@
+@extends('layouts.layout')
+@section('title')
+{{$title}}
+@endsection
+@section('content')
+<main>
+    @include('components.postDetail')            
+</main>
+@endsection
