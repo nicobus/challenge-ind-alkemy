@@ -84,11 +84,12 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(PostRequest $request)
+    public function update(PostRequest $request, $id)
     {
-        $post = new Post;
-        $post->create($request->all());
-        return redirect(route('postDetail', ['id' => $post->id]));
+        $post = Post::find($id);
+        $post->fill($request->all());
+        $post->save();
+        return redirect(route('postDetail', ['id' =>$id]));
     }
 
     /**
@@ -97,10 +98,10 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PostRequest $request)
+    public function destroy($id)
     {
-        $post = Post::find($request['movie_id']);
-        $request->delete();
+        $post = Post::find($id);
+        $post->delete();
         return redirect(route('home'));
     }
 }
