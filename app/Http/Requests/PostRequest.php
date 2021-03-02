@@ -25,6 +25,7 @@ class PostRequest extends FormRequest
     public function rules()
     {
         return [
+            'id' => 'integer',
         'title' => "required|string|min:1|max:100",
         'contents' => "required|string|min:1",
         "image" => "image",
